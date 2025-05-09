@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/frontpage.css">
+    <title>Welcome to Ashtra Rover</title>
+</head>
+<body>
+    <div class="hero">
+        <video autoplay loop muted plays-inline class="back-video" id="backgroundVideo">
+            <source src="video/Bkg.mp4" type="video/mp4">
+        </video>
+            <nav>
+                <a href="ashtra_rover.html">
+                    <img src="img/ASHTRAGROVERtxt.png" class="logo" alt="Ashtra Rover Logo">
+                </a>
+                <ul>
+                    <li><a href="#">CONTACT</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </nav>
+        <div class="content">
+            <img src="img/AG.simple.logo.png" alt="AG Logo">
+            <button id="popupButton" >Attendance</button>
+        </div>
+        <div class="container" id="container" style="display: none;">
+            <div class="form-container sign-up-container">
+                <form action="phpfile/adminlogin.php" method="POST">
+                    <h1>Administrator Account</h1>
+                    <input type="text" name="username" placeholder="Username"/>
+                    <input type="password" name="password" placeholder="Password" />
+                    <button type="submit">Log-in</button>
+                </form>
+            </div>
+            <div class="form-container sign-in-container">
+                <form action="phpfile/searchemp.php" method="POST">
+                    <h1>Employee ID</h1>
+                    <input type="text" name="emp_id" placeholder="ID" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <a href="#">Forgot your Emplyee ID</a>
+                    <button  type="submit" name="search">Log-in</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back Admin!</h1>
+                        <p>Enter admin username and password to access the admin option</p>
+                        <button class="ghost" id="searchUp" style="color: white;">Employee</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Dedicated Employee!!</h1>
+                        <p>Enter your Employee ID to check In or ut </p>
+                        <button class="ghost" id="signAdmin" style="color: white;">Admin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popupButton = document.getElementById('popupButton');
+        const signAdminButton = document.getElementById('signAdmin');
+        const searchUpButton = document.getElementById('searchUp');
+        const container = document.getElementById('container');
+        const backgroundVideo = document.getElementById('backgroundVideo');
+        
+        popupButton.addEventListener('click', function() {
+            // Toggle the visibility of the container
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+        });
+
+        signAdminButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        searchUpButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        if (localStorage.getItem('videoPlaybackTime')) {
+            const playbackTime = parseFloat(localStorage.getItem('videoPlaybackTime'));
+            backgroundVideo.currentTime = playbackTime;
+            backgroundVideo.play().catch(error => {
+                console.error('Video playback failed:', error);
+            });
+        }
+
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('videoPlaybackTime', backgroundVideo.currentTime.toString());
+        });
+});
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            if (error === '1') {
+                alert('Wrong employee ID or password. Please try again.');
+            }
+        };
+</script>
+</html>

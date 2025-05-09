@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/adminmenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="script/video.js"></script>
+    <title>Welcome Admin!</title>
+</head>
+<body>
+    <div class="hero">
+        <video autoplay loop muted plays-inline class="back-video" id="backgroundVideo">
+            <source src="video/Bkg.mp4" type="video/mp4">
+        </video>
+        <nav>
+            <a href="ashtra_rover.html">
+                <img src="img/ASHTRAGROVERtxt.png" class="logo" alt="Ashtra Rover Logo">
+            </a>
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-bell bell-icon"></i></a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="title">
+                <h1>Welcome Admin!</h1>
+            </div>
+            <div class="content">
+                <button class="grid-item" onclick="redirectToEmpMaintenance()">Employee Maintenance</span></button>
+                <button class="grid-item" onclick="redirectTologinreport()">Log-in Report</button>
+                <button class="grid-item" onclick="redirectToDaily()">Daily Attendance Report</button>
+                <button  class="grid-item" onclick="redirectToMontly()">Monthly Attendance Report</button>
+            </div>
+        </div>
+</body>
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+    const backgroundVideo = document.getElementById('backgroundVideo');
+
+    if (localStorage.getItem('videoPlaybackTime')) {
+        const playbackTime = parseFloat(localStorage.getItem('videoPlaybackTime'));
+        backgroundVideo.currentTime = playbackTime;
+        backgroundVideo.play().catch(error => {
+            console.error('Video playback failed:', error);
+        });
+    }
+
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('videoPlaybackTime', backgroundVideo.currentTime.toString());
+    });
+
+    window.redirectToEmpMaintenance = function() {
+        window.location.href = "empmanagement.php";
+    };
+    window.redirectToMontly = function() {
+        window.location.href = "monthlyattendance.php";
+    };
+    window.redirectToDaily = function() {
+        window.location.href = "dailyreport.php";
+    };
+    window.redirectTologinreport = function() {
+        window.location.href = "login_report.php";//palitan mo didi file link
+    };
+});
+</script>
+</html>

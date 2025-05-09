@@ -1,0 +1,107 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.hero{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+nav{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo{
+    width: 400px;
+    margin-left: -50px;
+}
+nav .logo, .content button {
+    z-index: 1; /* Lower z-index for the logo and button */
+}
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 40px;
+
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fafafa;
+    font-size: 17px;
+
+}
+/* Basic styling for the container */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Padding around the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    margin: auto; /* Center the container horizontally */
+}
+
+/* Title styling */
+.title {
+    text-align: center;
+    margin-bottom: 20px; /* Space between title and content */
+}
+
+/* Style for h1 */
+h1 {
+    font-size: 40px;
+    margin: 0;
+    color: white;
+}
+
+/* Grid layout for buttons */
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px; /* Gap between grid items */
+    justify-items: center; /* Align grid items at the center */
+}
+
+/* Style for grid items (buttons) */
+.grid-item {
+    color: white;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(17, 16, 16, 0.8);  /* Button background color */
+    border: 1px solid #a33131; /* Button border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    cursor: pointer;
+    width: 400px; /* Set the width */
+    height: 125px; /* Set the height */
+    font-size: 25px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.grid-item:hover {
+    color: #fc0000; /* Change text color on hover */
+    cursor: pointer;
+}
+.button-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 300px;
+    z-index: 1;
+}
